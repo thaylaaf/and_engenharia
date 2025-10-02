@@ -3,7 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+  
+    outline: 1px solid red !important;
 }
+
 
 html {
   font-size: 62.5%;
@@ -51,8 +54,21 @@ html {
   color: #1D3276; /* cor de destaque ao passar o mouse */
 }
 
-.menu-hamburguer{
-  display: none;
+.menu-hamburguer {
+    display: none; /* Oculto por padrão em telas grandes */
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.menu-hamburguer .linha {
+    display: block;
+    width: 3rem;
+    height: 0.3rem;
+    background-color: #333;
+    margin: 0.6rem 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .hero-content {
@@ -140,6 +156,8 @@ html {
 .montagem-fotos {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap; /* ADICIONE ESTA LINHA */
+  justify-content: center;
 }
 
 .montagem-fotos img {
@@ -201,8 +219,9 @@ html {
 .servicos-container {
   display: flex;
   justify-content: center;   /* centraliza os quadrados */
-  gap: 5rem;                 /* espaço entre os quadrados */
+  gap: 3rem;                 /* espaço entre os quadrados */
   padding: 6rem;
+  flex-wrap: wrap;
 }
 
 /* Cada bloco de serviço */
@@ -211,8 +230,8 @@ html {
   border: 2px solid #ebebeb;
   color: #1d3276;
   border-radius: 0.4rem;
-  width: 40rem;
-  padding: 6rem;
+  width: 34rem;
+  padding: 5rem;
   text-align: center;
   box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -332,6 +351,7 @@ figcaption {
     margin: auto;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 /* A "janela" que esconde os itens que estão fora da área visível */
@@ -419,11 +439,11 @@ figcaption {
 }
 
 #prevBtn {
-    left: -4rem; /* Metade da largura para fora do container */
+    left: 0.2rem; /* Metade da largura para fora do container */
 }
 
 #nextBtn {
-    right: -4rem; /* Metade da largura para fora do container */
+    right: 0.2rem; /* Metade da largura para fora do container */
 }
 
 /* Estilo para quando um botão estiver desabilitado */
@@ -521,13 +541,13 @@ footer .contato i {
     font-size: 1.6rem;         /* Tamanho do ícone */
     color: #C6C0B3;          /* Cor dos ícones */
     width: 2rem;             /* (Opcional) Define uma largura fixa para garantir que todos os textos fiquem perfeitamente alinhados */
-    text-align: center;      /* (Opcional) Centraliza o ícone dentro da largura fixa */
 }
 
 footer .contato p,
 footer .links-uteis li {
     margin: 1.2rem 0; /* Define o espaçamento vertical desejado para AMBOS */
     list-style-type: none;
+    text-align: left;
 }
 /* --- REGRA UNIFICADA PARA TODOS OS LINKS DO RODAPÉ --- */
 
@@ -546,13 +566,62 @@ footer .links-uteis a:hover {
     text-decoration: underline; /* Adiciona o sublinhado de volta quando o mouse passa por cima */
 }
 
+
+/* Para telas de TABLET e menores (até 1100px) */
+@media (max-width: 1100px) {
+    .item {
+        /* Faz cada item ocupar 50% do espaço, exibindo 2 por vez */
+        flex-basis: 50%;
+    }
+
+    /* Traz as setas para dentro do contêiner em telas menores */
+    #prevBtn {
+        left: 1.5rem;
+    }
+
+    #nextBtn {
+        right: 1.5rem;
+    }
+
+    .conteudo-sobre {
+        flex-direction: column;
+    }
+}
 /* Adicione isso ao final do seu CSS */
 
 @media (max-width: 768px) {
   
+      /* 1. Esconde o menu de navegação normal */
+    .menu {
+        display: none;
+        flex-direction: column; /* Organiza os links em coluna */
+        position: absolute;
+        top: 7rem; /* Altura do cabeçalho */
+        left: 0;
+        width: 100%;
+        background-color: #F7F7F7;
+        padding: 2rem 0;
+        box-shadow: 0 0.4rem 1rem rgba(0,0,0,0.1);
+    }
+
+    /* Classe que será adicionada via JavaScript para mostrar o menu */
+    .menu.ativo {
+        display: flex;
+    }
+
+    .menu li {
+        text-align: center;
+        padding: 1rem 0;
+    }
+    
+    /* 2. Mostra o botão hambúrguer */
+    .menu-hamburguer {
+        display: block;
+    }
   
-  
-  
+   .conteudo-sobre {
+     flex-direction: column;
+  }
   
   .servicos-container {
     flex-direction: column; /* Empilha os itens verticalmente */
@@ -564,6 +633,11 @@ footer .links-uteis a:hover {
     width: 100%; /* Faz cada serviço ocupar a largura total */
     max-width: 40rem; /* Mantém uma largura máxima para não ficar muito largo */
   }
+
+  .item {
+        /* Faz cada item ocupar 100% do espaço, exibindo 1 por vez */
+        flex-basis: 100%;
+    }
 
   .footer-container {
     flex-direction: column;

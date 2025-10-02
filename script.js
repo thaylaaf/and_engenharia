@@ -1,3 +1,13 @@
+// Seleciona o botão hambúrguer e o menu de navegação
+const menuHamburguer = document.querySelector('.menu-hamburguer');
+const menu = document.querySelector('.menu');
+
+// Adiciona um "ouvinte de evento" de clique ao botão
+menuHamburguer.addEventListener('click', () => {
+    // A cada clique, ele adiciona ou remove a classe 'ativo' do menu
+    menu.classList.toggle('ativo');
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     // Seleciona todas as imagens do carrossel
     const images = document.querySelectorAll('.carrossel-imagem .imagem-fundo');
