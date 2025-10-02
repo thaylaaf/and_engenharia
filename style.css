@@ -107,7 +107,7 @@ html {
     font-size: 2.4rem;
     margin-bottom: 1.5rem;
     font-weight: bold;
-    text-decoration: underline;
+    text-transform: uppercase;
 }
 
 .texto-sob-imagem p {
@@ -124,7 +124,7 @@ html {
 .titulo-sobre {
   margin-bottom: 5rem;
   color: #333;
-  text-decoration: underline;
+  text-transform: uppercase;
   font-size: 2.1rem;
 }
 
@@ -193,7 +193,7 @@ html {
 .servicos h2 {
     text-align: center; /* Centraliza o título */
     color: #333;
-    text-decoration: underline;
+    text-transform: uppercase;
     font-size: 2.1rem;
 }
 
@@ -261,7 +261,7 @@ html {
 }
 
 .texto-fundo h2 {
-    text-decoration: underline;
+    text-transform: uppercase;
     margin-top: 0.2rem;
     margin-bottom: 4rem;
     line-height: 1.2; /* Altura da linha para melhor leitura */
@@ -319,7 +319,7 @@ figcaption {
 
 .carrossel-section h2 {
   margin-bottom: 3rem;
-  text-decoration: underline;
+  text-transform: uppercase;
   color: #333;
   font-size: 2.1rem;
 }
@@ -475,7 +475,7 @@ figcaption {
 
 .orcamento h2 {
     font-weight: bold;
-    text-decoration: underline;
+    text-transform: uppercase;
     color: #333;
     font-size: 2.1rem;
   
