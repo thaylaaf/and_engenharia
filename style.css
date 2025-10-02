@@ -1,0 +1,573 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+.cabecalho {
+  background-color: #F7F7F7; /* cor escura para o header */
+  padding: 1rem 2rem; 
+  position: relative;
+}
+
+.barra-de-navegacao {
+  display: flex;
+  justify-content: space-between; /* logo à esquerda, menu à direita */
+  align-items: center;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.logo-link{
+  text-decoration: none;
+}
+
+.logo {
+  height: 5rem; /* ajuste conforme o tamanho desejado */
+}
+
+/* Menu */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* espaço entre os itens do menu */
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #50555e;
+  font-weight: bold;
+  font-size: 1.6rem;
+  transition: color 0.3s;
+}
+
+.menu li a:hover {
+  color: #1D3276; /* cor de destaque ao passar o mouse */
+}
+
+.menu-hamburguer{
+  display: none;
+}
+
+.hero-content {
+    position: relative;
+    height: 45rem;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.carrossel-imagem {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Garante que as imagens fiquem atrás do texto */
+}
+
+.imagem-fundo {
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.imagem-fundo.active {
+    opacity: 1;
+}
+
+.texto-sob-imagem {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: white;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro semi-transparente */
+    padding: 10rem;
+    z-index: 2;
+}
+
+.texto-sob-imagem h1 {
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.texto-sob-imagem p {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+
+.sobre {
+  padding: 3.5rem 4rem;
+  text-align: center;
+}
+
+.titulo-sobre {
+  margin-bottom: 5rem;
+  color: #333;
+  text-decoration: underline;
+  font-size: 2.1rem;
+}
+
+.conteudo-sobre {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
+
+/* Montagem de fotos com 3 imagens lado a lado */
+.montagem-fotos {
+    display: flex;
+    gap: 1rem;
+}
+
+.montagem-fotos img {
+    width: 18rem;
+    height: 33rem;
+    object-fit: cover;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+
+.texto-sobre {
+  max-width: 60rem;
+  text-align: left;
+}
+
+.texto-sobre h3 {
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.texto-sobre p {
+  line-height: 1.6rem;
+  color: #666;
+  margin-bottom: 2.5rem;
+  font-size: 1.6rem;
+}
+
+.texto-sobre ul {
+    list-style-position: inside;
+    list-style-type: none;
+    color: #666;
+    font-size: 1.6rem;
+}
+
+.texto-sobre li::before {
+    content: '✔'; /* O caractere do ícone */
+    display: inline-block;
+    margin-right: 1.2rem; /* Espaço entre o ícone e o texto */
+    font-size: 1.4rem;
+    color: #1D3276; /* Cor do ícone */
+}
+
+/* Estilo para a seção principal */
+.servicos {
+    width: 90%;
+    max-width: 120rem; /* Largura máxima para telas grandes */
+    margin: 2.0rem auto; /* Centraliza na página com margem em cima/baixo */
+}
+
+.servicos h2 {
+    text-align: center; /* Centraliza o título */
+    color: #333;
+    text-decoration: underline;
+    font-size: 2.1rem;
+}
+
+/* Container principal */
+.servicos-container {
+  display: flex;
+  justify-content: center;   /* centraliza os quadrados */
+  gap: 5rem;                 /* espaço entre os quadrados */
+  padding: 6rem;
+}
+
+/* Cada bloco de serviço */
+.servico {
+  background-color: #ffffff;
+  border: 2px solid #ebebeb;
+  color: #1d3276;
+  border-radius: 0.4rem;
+  width: 40rem;
+  padding: 6rem;
+  text-align: center;
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servico:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+/* Imagem */
+.logo-servico {
+  width: 6rem;
+  height: 6rem;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+}
+
+/* Título e texto */
+.servico h3 {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+}
+
+.servico p {
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+.porque-and {
+    display: flex; /* Ativa o Flexbox para o layout em colunas */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo em telas pequenas */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 1rem; /* Espaço entre o texto e a imagem */
+    background-color: #1d3276; /* Cor de fundo azul escuro, extraída da imagem */
+    color: white; /* Cor do texto */
+    padding: 5.5rem 6rem; /* Espaçamento interno (vertical | horizontal) */
+    overflow: hidden; /* Garante que nada vaze para fora da seção */
+}
+
+/* --- Coluna da Esquerda (Texto) --- */
+.texto-fundo {
+    max-width: 50rem; /* Largura máxima para o container de texto */
+    flex: 1; /* Permite que o container cresça se necessário */
+    margin: 4rem;
+}
+
+.texto-fundo h2 {
+    text-decoration: underline;
+    margin-top: 0.2rem;
+    margin-bottom: 4rem;
+    line-height: 1.2; /* Altura da linha para melhor leitura */
+    font-size: 2.1rem;
+}
+
+.texto-fundo ul {
+    list-style: none; /* Remove os marcadores de lista padrão */
+    color: #C6C0B3;
+    font-size: 1.6rem;
+   
+}
+
+.texto-fundo li {
+    margin-bottom: 1.7rem; /* Espaçamento entre os itens */
+    display: flex; /* Usamos flex para alinhar o ícone com o texto */
+    align-items: center; /* Alinha verticalmente o ícone e o texto */
+}
+
+/* Criação do ícone de check ✔ */
+.texto-fundo li::before {
+    content: '✔'; /* O caractere do ícone */
+    display: inline-block;
+    margin-right: 1.2rem; /* Espaço entre o ícone e o texto */
+    font-size: 1.6rem;
+    color: #C6C0B3; /* Cor do ícone */
+}
+
+
+/* --- Coluna da Direita (Imagem e Legenda) --- */
+figure {
+    margin: 0; /* Remove a margem padrão da tag <figure> */
+    max-width: 38rem; /* Largura máxima para a imagem */
+    flex: 1; /* Permite que o container cresça se necessário */
+    text-align: center; /* Centraliza a legenda */
+}
+
+.foto-fundo {
+    width: 100%; /* Faz a imagem ocupar todo o espaço da <figure> */
+    height: auto;
+    display: block; /* Remove espaços extras abaixo da imagem */
+}
+
+figcaption {
+    margin-top: 1.5rem; /* Espaço entre a imagem e a legenda */
+    font-size: 1.4rem;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.9); /* Branco com um pouco de transparência */
+}
+
+.carrossel-section {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.carrossel-section h2 {
+  margin-bottom: 3rem;
+  text-decoration: underline;
+  color: #333;
+  font-size: 2.1rem;
+}
+
+/* Container principal que segura tudo, incluindo os botões */
+.carrossel-container {
+    position: relative;
+    width: 90%;
+    max-width: 120rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+/* A "janela" que esconde os itens que estão fora da área visível */
+.carrossel-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* O contêiner flex que alinha os itens horizontalmente */
+.carrossel {
+    display: flex;
+    /* Animação suave ao mover */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Cada item do carrossel */
+.item {
+    /* Cada item ocupa 1/3 do espaço disponível */
+    flex: 0 0 calc(100% / 3);
+    padding: 2rem;
+    position: relative;
+}
+
+.item img {
+    width: 100%;
+    height: 100%; /* A imagem deve ocupar 100% da altura do item */
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    display: block;
+    border-radius: 0.5rem;
+    /* Transições para o efeito de blur e zoom (opcional) */
+    transition: filter 0.9s ease, transform 0.3s ease;
+}
+
+.item .overlay {
+    position: absolute; /* Permite posicionar o overlay sobre a imagem */
+    top: 0;             /* Começa do topo do .item */
+    left: 0;            /* Começa da esquerda do .item */
+    right: 0;           /* Vai até a direita do .item */
+    bottom: 0;          /* Vai até a base do .item */
+    background-color: rgba(228, 228, 228, 0.849); /* Cor de fundo semi-transparente */
+    color: #1D3276;
+    font-size: 1.6rem;
+    
+    /* Propriedades para centralizar o texto dentro do overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    padding: 2rem; /* Espaçamento interno para o texto */
+    opacity: 0;    /* Inicialmente invisível */
+    transition: opacity 0.8s ease; /* Transição suave para aparecer */
+    border-radius: 0.5rem; /* Arredondamento igual ao da imagem */
+    z-index: 2; /* Garante que o overlay fique acima da imagem */
+}
+
+/* Efeitos ao passar o mouse sobre o item */
+.item:hover img {
+    filter: blur(5px); /* Aplica o desfoque na imagem */
+    transform: scale(1.03); /* Opcional: um pequeno zoom na imagem */
+}
+
+.item:hover .overlay {
+    opacity: 1; /* Faz o overlay aparecer cobrindo tudo */
+}
+
+
+/* Estilo dos botões de navegação */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    font-size: 2.4rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.2);
+}
+
+#prevBtn {
+    left: -4rem; /* Metade da largura para fora do container */
+}
+
+#nextBtn {
+    right: -4rem; /* Metade da largura para fora do container */
+}
+
+/* Estilo para quando um botão estiver desabilitado */
+.nav-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+/* Adicione esta classe ao final do seu arquivo style.css */
+.no-transition {
+    transition: none !important;
+}
+
+.botao-orcamento {
+  display: inline-block;
+  margin: 3rem auto 0;
+  background-color: #1D3276;       /* cor de fundo principal */
+  color: #fff;                     /* cor do texto */
+  padding: 1.2rem 2.8rem;              /* espaçamento interno */
+  border-radius: 0.8rem;             /* bordas arredondadas estilo “pill” */
+  text-decoration: none;           /* remove sublinhado */
+  font-weight: normal;
+  transition: all 0.3s ease;       /* efeito suave ao passar o mouse */
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.15);
+  font-size: 1.6rem;
+}
+
+.botao-orcamento:hover {
+  background-color: #314483;       /* escurece ao passar o mouse */
+  box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.25);
+}
+
+.chamada-final {
+  display: flex;
+  justify-content: center; /* separa logo e texto */
+  align-items: center;            /* centraliza verticalmente */
+  padding: 3rem 6rem;
+  background-image: linear-gradient(to bottom, white, #1d327652); /* Gradiente de branco para cinza claro */
+  width: 100%;
+  gap: 7rem;                      /* espaçamento entre os dois lados */
+}
+
+.chamada-final img {
+  max-width: 18rem;               
+  height: auto;
+  display: block;
+}
+
+.orcamento h2 {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #333;
+    font-size: 2.1rem;
+  
+}
+
+/* Estilo para o elemento <footer> principal */
+footer {
+    background-color: #1D3276; /* Tom de azul escuro, similar ao da imagem */
+    color: #ffffff; /* Cor do texto branca */
+    padding: 5rem 2rem; /* Espaçamento interno (50px em cima/baixo, 20px nas laterais) */
+}
+
+/* Container que segura as colunas, usado para o alinhamento */
+.footer-container {
+    display: flex; /* ATIVA O FLEXBOX: permite alinhar os itens internos facilmente */
+    justify-content: center; /* Centraliza as colunas horizontalmente no meio da página */
+    align-items: flex-start; /* Alinha o topo das colunas */
+    gap: 25rem; /* Cria um espaço generoso entre as duas colunas */
+    max-width: 110rem; /* Define uma largura máxima para o conteúdo */
+    margin: 0 auto; /* Centraliza o container na página */
+}
+
+/* Estilos para os títulos <h3> ("Contato" e "Links úteis") */
+.contato h3,
+.links-uteis h3 {
+    margin-top: 0; /* Remove a margem superior padrão do h3 */
+    margin-bottom: 2rem; /* Adiciona espaço abaixo do título */
+    font-weight: normal;
+    font-size: 1.6rem;
+}
+
+/* --- ESTILOS PARA A SEÇÃO DE CONTATO --- */
+
+/* 1. Ajuste para os parágrafos que agora contêm ícone + link */
+footer .contato p {
+    display: flex;           /* Alinha o ícone e o link na mesma linha, um ao lado do outro */
+    align-items: center;     /* Centraliza verticalmente o ícone com o texto do link */
+}
+
+/* 2. Estilo para os ícones */
+footer .contato i {
+    margin-right: 1rem;      /* Cria um espaço entre o ícone e o texto do link */
+    font-size: 1.6rem;         /* Tamanho do ícone */
+    color: #C6C0B3;          /* Cor dos ícones */
+    width: 2rem;             /* (Opcional) Define uma largura fixa para garantir que todos os textos fiquem perfeitamente alinhados */
+    text-align: center;      /* (Opcional) Centraliza o ícone dentro da largura fixa */
+}
+
+footer .contato p,
+footer .links-uteis li {
+    margin: 1.2rem 0; /* Define o espaçamento vertical desejado para AMBOS */
+    list-style-type: none;
+}
+/* --- REGRA UNIFICADA PARA TODOS OS LINKS DO RODAPÉ --- */
+
+/* 3. A REGRA MAIS IMPORTANTE: Unificando o estilo dos links */
+/* Agora estilizamos os links de .contato e .links-uteis JUNTOS */
+footer .contato a,
+footer .links-uteis a {
+    color: #ffffff;          /* Cor BRANCA para todos os links */
+    text-decoration: none;   /* Remove o sublinhado de todos os links */
+    font-size: 1.4rem;
+}
+
+/* Efeito de hover unificado para todos os links */
+footer .contato a:hover,
+footer .links-uteis a:hover {
+    text-decoration: underline; /* Adiciona o sublinhado de volta quando o mouse passa por cima */
+}
+
+/* Adicione isso ao final do seu CSS */
+
+@media (max-width: 768px) {
+  
+  
+  
+  
+  
+  .servicos-container {
+    flex-direction: column; /* Empilha os itens verticalmente */
+    align-items: center; /* Centraliza os itens empilhados */
+    padding: 3rem;
+  }
+
+  .servico {
+    width: 100%; /* Faz cada serviço ocupar a largura total */
+    max-width: 40rem; /* Mantém uma largura máxima para não ficar muito largo */
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 4rem;
+  }
+}
