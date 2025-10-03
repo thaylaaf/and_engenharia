@@ -548,7 +548,7 @@ footer .contato p,
 footer .links-uteis li {
     margin: 1.2rem 0; /* Define o espaçamento vertical desejado para AMBOS */
     list-style-type: none;
-    text-align: left;
+    text-align: center;
 }
 /* --- REGRA UNIFICADA PARA TODOS OS LINKS DO RODAPÉ --- */
 
