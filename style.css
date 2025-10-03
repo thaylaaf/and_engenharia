@@ -156,7 +156,7 @@ html {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap; /* ADICIONE ESTA LINHA */
-  justify-content: center;
+    justify-content: center;
 }
 
 .montagem-fotos img {
@@ -517,6 +517,8 @@ footer {
     margin: 0 auto; /* Centraliza o container na página */
 }
 
+
+
 /* Estilos para os títulos <h3> ("Contato" e "Links úteis") */
 .contato h3,
 .links-uteis h3 {
@@ -601,6 +603,7 @@ footer .links-uteis a:hover {
         background-color: #F7F7F7;
         padding: 2rem 0;
         box-shadow: 0 0.4rem 1rem rgba(0,0,0,0.1);
+        z-index: 10;
     }
 
     /* Classe que será adicionada via JavaScript para mostrar o menu */
@@ -621,6 +624,17 @@ footer .links-uteis a:hover {
    .conteudo-sobre {
      flex-direction: column;
   }
+
+  /* ADICIONE ESTA REGRA PARA AJUSTAR AS IMAGENS */
+  .montagem-fotos img {
+    /* Usamos 'calc' para que cada imagem ocupe 1/3 do espaço, 
+       descontando o 'gap' de 1rem que existe entre elas. */
+    width: calc((100% - 2rem) / 3);
+
+    /* Remove a altura fixa para que a imagem se redimensione
+       mantendo sua proporção original e não fique achatada. */
+    height: auto; 
+  }
   
   .servicos-container {
     flex-direction: column; /* Empilha os itens verticalmente */
@@ -638,9 +652,14 @@ footer .links-uteis a:hover {
         flex-basis: 100%;
     }
 
+  .chamada-final {
+    gap: 2rem;
+  }  
+
   .footer-container {
     flex-direction: column;
     text-align: center;
     gap: 4rem;
+    align-items: center;
   }
 }

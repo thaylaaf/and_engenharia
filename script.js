@@ -1,129 +1,126 @@
-// Seleciona o botão hambúrguer e o menu de navegação
-const menuHamburguer = document.querySelector('.menu-hamburguer');
-const menu = document.querySelector('.menu');
-
-// Adiciona um "ouvinte de evento" de clique ao botão
-menuHamburguer.addEventListener('click', () => {
-    // A cada clique, ele adiciona ou remove a classe 'ativo' do menu
-    menu.classList.toggle('ativo');
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Seleciona todas as imagens do carrossel
-    const images = document.querySelectorAll('.carrossel-imagem .imagem-fundo');
-    
-    // Define o índice da imagem atualmente visível
-    let currentIndex = 0;
-    
-    // Define o intervalo de tempo para a troca de imagens (em milissegundos)
-    const intervalTime = 5000; // 5 segundos
-
-    function showNextImage() {
-        // Remove a classe 'active' da imagem atual, fazendo-a desaparecer
-        images[currentIndex].classList.remove('active');
-        
-        // Calcula o índice da próxima imagem, voltando ao início se chegar ao fim
-        currentIndex = (currentIndex + 1) % images.length;
-        
-        // Adiciona a classe 'active' à próxima imagem, fazendo-a aparecer
-        images[currentIndex].classList.add('active');
-    }
-
-    // Inicia o carrossel automático
-    setInterval(showNextImage, intervalTime);
-});
-
-
+// Aguarda o documento HTML ser completamente carregado antes de rodar o script
 document.addEventListener('DOMContentLoaded', () => {
-    const carrossel = document.querySelector('.carrossel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
 
-    let items = Array.from(carrossel.children);
-    const itemsVisible = 3; // Quantidade de itens visíveis em tela cheia
-    let currentIndex = itemsVisible; // Começamos nos primeiros itens reais
-    let isTransitioning = false;
-
-    const setupCarousel = () => {
-        // 1. Clonar itens para o efeito infinito
-        const itemsToPrepend = items.slice(-itemsVisible).map(item => item.cloneNode(true));
-        const itemsToAppend = items.slice(0, itemsVisible).map(item => item.cloneNode(true));
-
-        carrossel.prepend(...itemsToPrepend);
-        carrossel.append(...itemsToAppend);
-
-        // 2. Atualizar a lista de itens para incluir os clones
-        items = Array.from(carrossel.children);
-        
-        // 3. Posicionar o carrossel no início dos itens "reais" (sem animação)
-        carrossel.classList.add('no-transition');
-        updateCarrosselPosition();
-        
-        // Força o navegador a aplicar o estilo antes de remover a classe
-        setTimeout(() => {
-            carrossel.classList.remove('no-transition');
-        }, 50);
-    };
-
-    const updateCarrosselPosition = () => {
-        const itemWidth = 100 / itemsVisible;
-        const newTransform = -currentIndex * itemWidth;
-        carrossel.style.transform = `translateX(${newTransform}%)`;
-    };
-
-    const shiftItems = (direction) => {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        
-        carrossel.classList.remove('no-transition');
-
-        // Mover para o próximo ou anterior
-        currentIndex += direction;
-        updateCarrosselPosition();
-    };
-
-    // Evento que "escuta" o fim da animação de transição
-    carrossel.addEventListener('transitionend', () => {
-        // Se chegamos nos clones do final...
-        if (currentIndex >= items.length - itemsVisible) {
-            carrossel.classList.add('no-transition');
-            currentIndex = itemsVisible; // Volta para os primeiros itens reais
-            updateCarrosselPosition();
-        }
-
-        // Se chegamos nos clones do início...
-        if (currentIndex <= itemsVisible - 1) {
-            carrossel.classList.add('no-transition');
-            // Volta para os últimos itens reais
-            currentIndex = items.length - (itemsVisible * 2);
-            updateCarrosselPosition();
-        }
-        
-        isTransitioning = false;
-    });
-
-    // Adiciona os eventos de clique
-    nextBtn.addEventListener('click', () => shiftItems(1));
-    prevBtn.addEventListener('click', () => shiftItems(-1));
-    
-    // Inicia o carrossel
-    setupCarousel();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
+    // --- LÓGICA PARA O MENU HAMBÚRGUER ---
     const menuHamburguer = document.querySelector('.menu-hamburguer');
     const menu = document.querySelector('.menu');
 
-    menuHamburguer.addEventListener('click', function() {
-        // Alterna a classe 'ativo' no menu e no botão
-        menu.classList.toggle('ativo');
-        this.classList.toggle('ativo');
+    if (menuHamburguer && menu) {
+        // 1. LÓGICA PARA ABRIR/FECHAR O MENU COM O BOTÃO
+        menuHamburguer.addEventListener('click', function() {
+            menu.classList.toggle('ativo');
+            this.classList.toggle('ativo');
 
-        // Atualiza o aria-label para acessibilidade
-        if (this.classList.contains('ativo')) {
-            this.setAttribute('aria-label', 'Fechar menu');
-        } else {
-            this.setAttribute('aria-label', 'Abrir menu');
+            if (this.classList.contains('ativo')) {
+                this.setAttribute('aria-label', 'Fechar menu');
+            } else {
+                this.setAttribute('aria-label', 'Abrir menu');
+            }
+        });
+
+        // 2. LÓGICA PARA FECHAR O MENU AO CLICAR FORA (NOVA ADIÇÃO)
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = menu.contains(event.target);
+            const isClickOnHamburguer = menuHamburguer.contains(event.target);
+            const isMenuOpen = menu.classList.contains('ativo');
+
+            // Se o menu está aberto e o clique foi fora do menu e do botão, fecha o menu
+            if (isMenuOpen && !isClickInsideMenu && !isClickOnHamburguer) {
+                menu.classList.remove('ativo');
+                menuHamburguer.classList.remove('ativo');
+                menuHamburguer.setAttribute('aria-label', 'Abrir menu');
+            }
+        });
+    }
+
+
+    // --- LÓGICA PARA O CARROSSEL DO TOPO (HERO) ---
+    const images = document.querySelectorAll('.carrossel-imagem .imagem-fundo');
+    if (images.length > 0) {
+        let currentIndexHero = 0;
+        const intervalTime = 5000;
+
+        function showNextImage() {
+            images[currentIndexHero].classList.remove('active');
+            currentIndexHero = (currentIndexHero + 1) % images.length;
+            images[currentIndexHero].classList.add('active');
         }
-    });
+
+        setInterval(showNextImage, intervalTime);
+    }
+
+
+    // --- LÓGICA PARA O CARROSSEL DE PROJETOS ---
+    const carrosselProjetos = document.querySelector('.carrossel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (carrosselProjetos && prevBtn && nextBtn) {
+        let items = [];
+        let itemsVisible = 0;
+        let currentIndexProjetos = 0;
+        let isTransitioning = false;
+        let originalItems = Array.from(carrosselProjetos.children);
+
+        const getItemsVisible = () => {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 1100) return 2;
+            return 3;
+        };
+
+        const updateCarrosselPosition = (animate = true) => {
+            if (!animate) carrosselProjetos.classList.add('no-transition');
+            
+            const itemWidth = 100 / itemsVisible;
+            const newTransform = -currentIndexProjetos * itemWidth;
+            carrosselProjetos.style.transform = `translateX(${newTransform}%)`;
+            
+            if (!animate) {
+                setTimeout(() => carrosselProjetos.classList.remove('no-transition'), 50);
+            }
+        };
+    
+        const setupCarousel = () => {
+            itemsVisible = getItemsVisible();
+            carrosselProjetos.innerHTML = ''; 
+            originalItems.forEach(item => carrosselProjetos.appendChild(item.cloneNode(true)));
+
+            let currentItems = Array.from(carrosselProjetos.children);
+            const itemsToPrepend = currentItems.slice(-itemsVisible).map(item => item.cloneNode(true));
+            const itemsToAppend = currentItems.slice(0, itemsVisible).map(item => item.cloneNode(true));
+            carrosselProjetos.prepend(...itemsToPrepend);
+            carrosselProjetos.append(...itemsToAppend);
+            
+            items = Array.from(carrosselProjetos.children);
+            currentIndexProjetos = itemsVisible; 
+            updateCarrosselPosition(false);
+        };
+
+        const shiftItems = (direction) => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            
+            carrosselProjetos.classList.remove('no-transition');
+            currentIndexProjetos += direction;
+            updateCarrosselPosition(true);
+        };
+
+        carrosselProjetos.addEventListener('transitionend', () => {
+            if (currentIndexProjetos >= items.length - itemsVisible) {
+                currentIndexProjetos = itemsVisible;
+                updateCarrosselPosition(false);
+            }
+            if (currentIndexProjetos <= itemsVisible - 1) {
+                currentIndexProjetos = items.length - (itemsVisible * 2);
+                updateCarrosselPosition(false);
+            }
+            isTransitioning = false;
+        });
+
+        nextBtn.addEventListener('click', () => shiftItems(1));
+        prevBtn.addEventListener('click', () => shiftItems(-1));
+        
+        setupCarousel();
+        window.addEventListener('resize', setupCarousel);
+    }
 });
